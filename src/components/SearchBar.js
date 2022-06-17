@@ -1,16 +1,12 @@
-import { useRef } from "react";
-
-function SearchBar() {
-  const movieSearch = useRef();
+function SearchBar({ onFilter }) {
+  function onSubmit(e) {
+    e.preventDefault();
+    onFilter(e.target.search.value);
+  }
   return (
     <>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          console.log(movieSearch.current.value, "movieName");
-        }}
-      >
-        <input ref={movieSearch} />
+      <form onSubmit={onSubmit}>
+        <input name="search" />
       </form>
     </>
   );
